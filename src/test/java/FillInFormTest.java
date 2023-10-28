@@ -34,7 +34,8 @@ public class FillInFormTest {
         $(".react-datepicker__day--009").click();
         $("#hobbies-checkbox-2 + label").click();
         $("#hobbies-checkbox-3 + label").click();
-        $("#uploadPicture").uploadFile(new File("scr\\test\\Cat.jpg"));
+        $("#subjectsInput").val("Math, History").pressEnter();
+        $("#uploadPicture").uploadFromClasspath("Cat.jpg");
 
     }
 }
