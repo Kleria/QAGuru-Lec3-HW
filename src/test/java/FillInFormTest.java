@@ -11,7 +11,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class FillInFormTest {
     @BeforeAll
     static void beforeAll(){
-        Configuration.browserSize = "1920x1080";
+        Configuration.browserSize = "2560x1440";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
     }
@@ -34,8 +34,33 @@ public class FillInFormTest {
         $(".react-datepicker__day--009").click();
         $("#hobbies-checkbox-2 + label").click();
         $("#hobbies-checkbox-3 + label").click();
-        $("#subjectsInput").val("Math, History").pressEnter();
+        $("#subjectsInput").setValue("Maths").pressEnter();
+        $("#subjectsInput").setValue("History").pressEnter();
         $("#uploadPicture").uploadFromClasspath("Cat.jpg");
+        $("#currentAddress").setValue("ul. Pushkina, d. Kolotushkina");
+        $("#react-select-3-input").setValue("Haryana");
+        $("#react-select-3-input").pressEnter();
+        $("#react-select-4-input").setValue("Panipat");
+        /*
+         за счет разрешения экрана не смогла добиться появления кнопки SUBMIT, поэтому прописала так
+         есть ли возможность кроме такого костыля еще как-то ее вытащить?
+         */
+        $("#react-select-4-input").pressEnter().pressTab().pressEnter();
+
+        //чисто формально тест прошел, но можно ли как-то прописать, чтобы именно в таком-то столбце было такое-то решение?
+
+        $(".table").shouldHave(text("Jane"));
+        $(".table").shouldHave(text("Doe"));
+        $(".table").shouldHave(text("janedoe@test.com"));
+        $(".table").shouldHave(text("Female"));
+        $(".table").shouldHave(text("8800555353"));
+        $(".table").shouldHave(text("9 January,1994"));
+        $(".table").shouldHave(text("Maths, History"));
+        $(".table").shouldHave(text("Reading, Music"));
+        $(".table").shouldHave(text( "Cat.jpg"));
+        $(".table").shouldHave(text("ul. Pushkina, d. Kolotushkina"));
+        $(".table").shouldHave(text("Haryana"));
+        $(".table").shouldHave(text("Panipat"));
 
     }
 }
